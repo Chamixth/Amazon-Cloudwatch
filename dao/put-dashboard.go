@@ -7,22 +7,21 @@ import (
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
 )
 
-func PutDashboard(application dto.Dashboard)(*cloudwatch.PutDashboardOutput,error) {
+func PutDashboard(application dto.Dashboard) (*cloudwatch.PutDashboardOutput, error) {
 	client, err := awsConfig.AwsSession()
 
-	if err != nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
 
 	result, err := client.PutDashboard(&cloudwatch.PutDashboardInput{
-		DashboardName:application.DashboardName ,
+		DashboardName: application.DashboardName,
 		DashboardBody: application.DashboardBody,
-		
 	})
 
-	if err != nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
 
-	return result,nil
+	return result, nil
 }
